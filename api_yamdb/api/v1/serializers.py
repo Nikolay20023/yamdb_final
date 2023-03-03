@@ -1,11 +1,10 @@
 from rest_framework import serializers
 from reviews.models import Comments, Review
-from rest_framework.serializers import ModelSerializer, IntegerField
+from rest_framework.serializers import IntegerField, ModelSerializer
 from rest_framework.relations import SlugRelatedField
 from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-
 from reviews.models import Category, Genre, Title
 
 User = get_user_model()
@@ -26,7 +25,7 @@ class UserCreationSerializer(serializers.Serializer):
             )
         return value
 
-    def validate_username(sefl, value):
+    def validate_username(self, value):
         """Валидация username."""
         username = value.lower()
         if username == 'me':
