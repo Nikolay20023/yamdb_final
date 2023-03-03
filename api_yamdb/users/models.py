@@ -5,7 +5,7 @@ from django.contrib.auth.models import (
 
 
 class User(AbstractUser):
-    """Model User от AbstractUser."""
+    """Model User от d AbstractUser."""
 
     USER = 'user'
     MODERATOR = 'moderator'
