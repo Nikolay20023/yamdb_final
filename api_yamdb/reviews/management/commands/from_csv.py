@@ -1,20 +1,19 @@
 import csv
-
 import os
 
-from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.core.management.base import BaseCommand
+from reviews.models import (Category, Comments, Genre,
+                            Review, Title)
 from users.models import User
-from reviews.models import (Title, Genre, Category,
-                            Review, Comments)
 
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        DIR_DATA = os.path.join(settings.BASE_DIR, 'static/data/')
+        dir_data = os.path.join(settings.BASE_DIR, 'static/data/')
 
-        with open(DIR_DATA + 'users.csv', encoding='utf-8-sig') as csvf:
+        with open(dir_data + 'users.csv', encoding='utf-8-sig') as csvf:
             reader = csv.DictReader(csvf)
             for row in reader:
                 """final = #тут то что ты импортировал.
@@ -30,7 +29,7 @@ class Command(BaseCommand):
                 )
                 final.save()
 
-        with open(DIR_DATA + 'category.csv', encoding='utf-8-sig') as csvf:
+        with open(dir_data + 'category.csv', encoding='utf-8-sig') as csvf:
             reader = csv.DictReader(csvf)
             for row in reader:
                 final = Category(
@@ -40,7 +39,7 @@ class Command(BaseCommand):
                 )
                 final.save()
 
-        with open(DIR_DATA + 'comments.csv', encoding='utf-8-sig') as csvf:
+        with open(dir_data + 'comments.csv', encoding='utf-8-sig') as csvf:
             reader = csv.DictReader(csvf)
             for row in reader:
                 final = Comments(
@@ -52,7 +51,7 @@ class Command(BaseCommand):
                 )
                 final.save()
 
-        with open(DIR_DATA + 'genre_title.csv', encoding='utf-8-sig') as csvf:
+        with open(dir_data + 'genre_title.csv', encoding='utf-8-sig') as csvf:
             reader = csv.DictReader(csvf)
             for row in reader:
                 title = Title.objects.get(id=row['title_id'])
@@ -60,7 +59,7 @@ class Command(BaseCommand):
                 title.genre.set([genre])
                 title.save()
 
-        with open(DIR_DATA + 'genre.csv', encoding='utf-8-sig') as csvf:
+        with open(dir_data + 'genre.csv', encoding='utf-8-sig') as csvf:
             reader = csv.DictReader(csvf)
             for row in reader:
                 final = Genre(
@@ -70,7 +69,7 @@ class Command(BaseCommand):
                 )
                 final.save()
 
-        with open(DIR_DATA + 'review.csv', encoding='utf-8-sig') as csvf:
+        with open(dir_data + 'review.csv', encoding='utf-8-sig') as csvf:
             reader = csv.DictReader(csvf)
             for row in reader:
                 final = Title(
@@ -83,7 +82,7 @@ class Command(BaseCommand):
                 )
                 final.save()
 
-        with open(DIR_DATA + 'titles.csv', encoding='utf-8-sig') as csvf:
+        with open(dir_data + 'titles.csv', encoding='utf-8-sig') as csvf:
             reader = csv.DictReader(csvf)
             for row in reader:
                 final = Title(
