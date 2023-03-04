@@ -54,10 +54,10 @@ jobs:
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{}}
-          username: ${{}}
-          key: ${{}}
-          passphrase: ${{}}
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USER}}
+          key: ${{secrets.SSH_KEY}}
+          passphrase: ${{secrets.PASSPHRASE}}
           scripts: |
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/api_yamdb:latest
             sudo docker stop $(sudo docker ps -a -q)
