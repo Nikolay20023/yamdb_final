@@ -23,8 +23,6 @@ jobs:
         python -m flake8
         python -m pytest
         cd api_yamdb/
-
-        
         python manage.py test
         
   build_and_push_to_docker_hub:
@@ -73,4 +71,3 @@ jobs:
         to: ${{secrets.TELEGRAM_TO}}      
         token: ${{secrets.TELEGRAM_TOKEN}}
         message: ${{github.workflow }} Успешно выполнено!
-  
